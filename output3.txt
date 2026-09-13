@@ -1,0 +1,92 @@
+TRANSPORTATION PROBLEM
+
+Cost Matrix:
+[[19 30 50 10]
+ [70 30 40 60]
+ [40  8 70 20]]
+
+Initial Allocation from VAM:
+[[ 5  0  0  2]
+ [ 0  0  7  2]
+ [ 0  8  0 10]]
+
+Initial Cost = 779.00
+
+======================================================================
+MODI METHOD
+======================================================================
+
+----------------------------------------------------------------------
+MODI ITERATION 1
+----------------------------------------------------------------------
+
+Current Allocation:
+[[ 5  0  0  2]
+ [ 0  0  7  2]
+ [ 0  8  0 10]]
+
+U values:
+[ 0. 50. 10.]
+
+V values:
+[ 19.  -2. -10.  10.]
+
+Opportunity Cost Table:
+Δij = cij - (ui + vj)
+[[  0.  32.  60.   0.]
+ [  1. -18.   0.   0.]
+ [ 11.   0.  70.   0.]]
+
+Most negative opportunity cost: Δ(S2,D2) = -18.00
+Entering cell = S2 -> D2
+
+Closed Loop:
++ S2-D2   Allocation = 0
+- S2-D4   Allocation = 2
++ S3-D4   Allocation = 10
+- S3-D2   Allocation = 8
+
+Theta = 2
+Leaving cell = S2 -> D4
+
+New Allocation:
+[[ 5  0  0  2]
+ [ 0  2  7  0]
+ [ 0  6  0 12]]
+
+Transportation Cost = 743.00
+
+----------------------------------------------------------------------
+MODI ITERATION 2
+----------------------------------------------------------------------
+
+Current Allocation:
+[[ 5  0  0  2]
+ [ 0  2  7  0]
+ [ 0  6  0 12]]
+
+U values:
+[ 0. 32. 10.]
+
+V values:
+[19. -2.  8. 10.]
+
+Opportunity Cost Table:
+Δij = cij - (ui + vj)
+[[ 0. 32. 42.  0.]
+ [19.  0.  0. 18.]
+ [11.  0. 52.  0.]]
+
+All opportunity costs are >= 0.
+Therefore, the solution is OPTIMAL.
+
+======================================================================
+FINAL OPTIMAL SOLUTION
+======================================================================
+
+Optimal Allocation:
+[[ 5  0  0  2]
+ [ 0  2  7  0]
+ [ 0  6  0 12]]
+
+Minimum Transportation Cost = 743.00

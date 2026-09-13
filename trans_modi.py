@@ -1,16 +1,12 @@
 
 import numpy as np
 
-
-# ==========================================================
 # CALCULATE TOTAL COST
 
 def calculate_cost(allocation, cost):
 
     return np.sum(allocation * cost)
 
-
-# ==========================================================
 # FIND CLOSED LOOP
 def find_cycle(start, basic, rows, cols):
 
@@ -27,7 +23,6 @@ def find_cycle(start, basic, rows, cols):
 
         r, c = current
 
-        # --------------------------------------------------
         # Find cells in the same row
        
         possible = []
@@ -37,7 +32,6 @@ def find_cycle(start, basic, rows, cols):
             if j != c and (r, j) in cells:
                 possible.append((r, j))
 
-        # --------------------------------------------------
         # Find cells in the same column
        
         for i in range(rows):
@@ -84,9 +78,7 @@ def find_cycle(start, basic, rows, cols):
         return None
 
     return dfs([start])
-
-
-# ==========================================================
+    
 # MODI METHOD
 # ==========================================================
 
@@ -99,10 +91,8 @@ def modi_method(cost, allocation):
     )
 
     rows, cols = cost.shape
-
-    # ------------------------------------------------------
+    
     # Identify basic cells
-    # ------------------------------------------------------
 
     basic = set()
 
@@ -128,7 +118,6 @@ def modi_method(cost, allocation):
         print("\nCurrent Allocation:")
         print(allocation.astype(int))
 
-        # --------------------------------------------------
         # Calculate u and v
         # --------------------------------------------------
 
@@ -167,10 +156,8 @@ def modi_method(cost, allocation):
         print("\nV values:")
         print(v)
 
-        # --------------------------------------------------
         # Calculate opportunity costs
         # Δij = cij - (ui + vj)
-        # --------------------------------------------------
 
         delta = np.zeros(
             (rows, cols)
@@ -196,10 +183,8 @@ def modi_method(cost, allocation):
         print("Δij = cij - (ui + vj)")
 
         print(delta)
-
-        # --------------------------------------------------
+        
         # Find most negative opportunity cost
-        # --------------------------------------------------
 
         entering = None
         minimum = 0
@@ -216,9 +201,7 @@ def modi_method(cost, allocation):
 
                         entering = (i, j)
 
-        # --------------------------------------------------
         # Optimality condition
-        # --------------------------------------------------
 
         if entering is None:
 
@@ -247,9 +230,7 @@ def modi_method(cost, allocation):
 
             return allocation, final_cost
 
-        # --------------------------------------------------
         # Entering cell
-        # --------------------------------------------------
 
         ei, ej = entering
 
@@ -300,9 +281,7 @@ def modi_method(cost, allocation):
                 f"{allocation[i][j]:g}"
             )
 
-        # --------------------------------------------------
         # Calculate theta
-        # --------------------------------------------------
 
         minus_cells = []
 
@@ -325,9 +304,7 @@ def modi_method(cost, allocation):
             f"\nTheta = {theta:g}"
         )
 
-        # --------------------------------------------------
         # Improve allocation
-        # --------------------------------------------------
 
         for k, (i, j) in enumerate(cycle):
 
@@ -342,9 +319,7 @@ def modi_method(cost, allocation):
         # Entering cell becomes basic
         basic.add(entering)
 
-        # --------------------------------------------------
         # Remove leaving cell
-        # --------------------------------------------------
 
         for cell in minus_cells:
 
@@ -361,9 +336,7 @@ def modi_method(cost, allocation):
 
                 break
 
-        # --------------------------------------------------
         # Display new cost
-        # --------------------------------------------------
 
         new_cost = calculate_cost(
             allocation,
@@ -380,17 +353,12 @@ def modi_method(cost, allocation):
         )
 
         iteration += 1
-
-
-# ==========================================================
+        
 # MAIN PROGRAM
-# ==========================================================
 
 def main():
 
-    # ------------------------------------------------------
     # Transportation cost matrix
-    # ------------------------------------------------------
 
     cost = np.array([
         [19, 30, 50, 10],
@@ -398,10 +366,8 @@ def main():
         [40,  8, 70, 20]
     ])
 
-    # ------------------------------------------------------
     # VAM initial basic feasible solution
-    # ------------------------------------------------------
-
+   
     initial_allocation = np.array([
         [5, 0, 0, 2],
         [0, 0, 7, 2],
@@ -426,9 +392,7 @@ def main():
         f"{initial_cost:.2f}"
     )
 
-    # ------------------------------------------------------
-    # Run MODI
-    # ------------------------------------------------------
+    # Run MODI-
 
     modi_method(
         cost,

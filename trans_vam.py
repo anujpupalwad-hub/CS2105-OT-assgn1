@@ -24,9 +24,7 @@ def vogel_approximation(cost, supply, demand):
 
     while np.sum(supply) > 0 and np.sum(demand) > 0:
 
-        # --------------------------------------------------
         # Calculate row penalties
-        # --------------------------------------------------
         row_penalty = []
 
         for i in range(rows):
@@ -53,9 +51,7 @@ def vogel_approximation(cost, supply, demand):
 
             row_penalty.append(penalty)
 
-        # --------------------------------------------------
         # Calculate column penalties
-        # --------------------------------------------------
         col_penalty = []
 
         for j in range(cols):
@@ -82,9 +78,8 @@ def vogel_approximation(cost, supply, demand):
 
             col_penalty.append(penalty)
 
-        # --------------------------------------------------
         # Display penalties
-        # --------------------------------------------------
+       
         print(f"\n--- Step {step} ---")
 
         print("Row penalties:")
@@ -99,15 +94,13 @@ def vogel_approximation(cost, supply, demand):
             if col_penalty[j] != -1:
                 print(f"D{j + 1} = {col_penalty[j]:g}")
 
-        # --------------------------------------------------
         # Find maximum penalty
-        # --------------------------------------------------
+      
         max_row = max(row_penalty)
         max_col = max(col_penalty)
 
-        # --------------------------------------------------
         # Select row or column having maximum penalty
-        # --------------------------------------------------
+    
         if max_row >= max_col:
 
             i = row_penalty.index(max_row)
@@ -152,9 +145,8 @@ def vogel_approximation(cost, supply, demand):
                 f"Selected column = D{j + 1}"
             )
 
-        # --------------------------------------------------
         # Allocate as much as possible
-        # --------------------------------------------------
+       
         quantity = min(supply[i], demand[j])
 
         print(
@@ -192,9 +184,8 @@ def vogel_approximation(cost, supply, demand):
 
         step += 1
 
-    # ------------------------------------------------------
     # Display final VAM allocation
-    # ------------------------------------------------------
+    
     print("\n" + "=" * 70)
     print("INITIAL BASIC FEASIBLE SOLUTION")
     print("=" * 70)
@@ -215,10 +206,7 @@ def vogel_approximation(cost, supply, demand):
 
     return allocation
 
-
-# ==========================================================
 # MAIN PROGRAM
-# ==========================================================
 
 def main():
 

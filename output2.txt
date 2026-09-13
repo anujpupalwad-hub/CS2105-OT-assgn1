@@ -1,1 +1,140 @@
+TRANSPORTATION PROBLEM
 
+Cost Matrix:
+[[19 30 50 10]
+ [70 30 40 60]
+ [40  8 70 20]]
+
+Supply:
+[ 7  9 18]
+
+Demand:
+[ 5  8  7 14]
+
+Problem is balanced.
+
+======================================================================
+VOGEL'S APPROXIMATION METHOD (VAM)
+======================================================================
+
+--- Step 1 ---
+Row penalties:
+S1 = 9
+S2 = 10
+S3 = 12
+
+Column penalties:
+D1 = 21
+D2 = 22
+D3 = 10
+D4 = 10
+
+Maximum penalty = 22
+Selected column = D2
+Selected cell = S3 -> D2
+Transportation cost = 8
+Allocation = min(18, 8) = 8
+Allocate 8 unit(s)
+Remaining supply: [ 7  9 10]
+Remaining demand: [ 5  0  7 14]
+
+--- Step 2 ---
+Row penalties:
+S1 = 9
+S2 = 20
+S3 = 20
+
+Column penalties:
+D1 = 21
+D3 = 10
+D4 = 10
+
+Maximum penalty = 21
+Selected column = D1
+Selected cell = S1 -> D1
+Transportation cost = 19
+Allocation = min(7, 5) = 5
+Allocate 5 unit(s)
+Remaining supply: [ 2  9 10]
+Remaining demand: [ 0  0  7 14]
+
+--- Step 3 ---
+Row penalties:
+S1 = 40
+S2 = 20
+S3 = 50
+
+Column penalties:
+D3 = 10
+D4 = 10
+
+Maximum penalty = 50
+Selected row = S3
+Selected cell = S3 -> D4
+Transportation cost = 20
+Allocation = min(10, 14) = 10
+Allocate 10 unit(s)
+Remaining supply: [2 9 0]
+Remaining demand: [0 0 7 4]
+
+--- Step 4 ---
+Row penalties:
+S1 = 40
+S2 = 20
+
+Column penalties:
+D3 = 10
+D4 = 50
+
+Maximum penalty = 50
+Selected column = D4
+Selected cell = S1 -> D4
+Transportation cost = 10
+Allocation = min(2, 4) = 2
+Allocate 2 unit(s)
+Remaining supply: [0 9 0]
+Remaining demand: [0 0 7 2]
+
+--- Step 5 ---
+Row penalties:
+S2 = 20
+
+Column penalties:
+D3 = 40
+D4 = 60
+
+Maximum penalty = 60
+Selected column = D4
+Selected cell = S2 -> D4
+Transportation cost = 60
+Allocation = min(9, 2) = 2
+Allocate 2 unit(s)
+Remaining supply: [0 7 0]
+Remaining demand: [0 0 7 0]
+
+--- Step 6 ---
+Row penalties:
+S2 = 40
+
+Column penalties:
+D3 = 40
+
+Maximum penalty = 40
+Selected row = S2
+Selected cell = S2 -> D3
+Transportation cost = 40
+Allocation = min(7, 7) = 7
+Allocate 7 unit(s)
+Remaining supply: [0 0 0]
+Remaining demand: [0 0 0 0]
+
+======================================================================
+INITIAL BASIC FEASIBLE SOLUTION
+======================================================================
+
+Allocation Matrix:
+[[ 5  0  0  2]
+ [ 0  0  7  2]
+ [ 0  8  0 10]]
+
+Initial Transportation Cost = 779.00
